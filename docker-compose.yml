@@ -24,6 +24,9 @@ services:
       - MYSQL_USER=myuser
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=docker
+    command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON
+    volumes:
+      - "./docker/mysql/data:/var/lib/mysql:rw"
 
   php-fpm:
     build:
